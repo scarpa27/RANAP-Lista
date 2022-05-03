@@ -4,9 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.DetailsActivity"
-    android:theme="@style/Theme.ListaCizmic"
-    android:background="colorprimary">
+    tools:context=".activities.DetailsActivity">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_hor_1"

@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".activities.ListActivity">
+    tools:context=".activities.ListActivity"
+    android:theme="@style/Theme.ListaCizmic">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_hor_1"

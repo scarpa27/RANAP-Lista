@@ -13,7 +13,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="8sp"
-        android:textColor="#000"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -26,11 +25,11 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv_amount"
         android:padding="8sp"
-        android:textColor="#000"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_amount"
         tools:text="16.2.2022." />
+
 
     <ImageView
         android:id="@+id/item_image"
@@ -42,12 +41,14 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@drawable/pay1" />
 
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.7" />
+
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline4"
