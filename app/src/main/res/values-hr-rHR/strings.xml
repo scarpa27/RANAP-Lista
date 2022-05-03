@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="detail_date">Datum:</string>
+    <string name="detail_amount">"Iznos: "</string>
+    <string name="detail_id">ID:</string>
+    <string-array name="langs">
+        <item>Engleski</item>
+        <item>Hrvatski</item>
+        <item>Njemački</item>
+    </string-array>
+</resources>

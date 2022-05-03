@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name" translatable="false">ListaCizmic</string>
+    <string name="detail_date">Date:</string>
+    <string name="detail_id">ID:</string>
+    <string name="detail_amount">Amount:</string>
+    <string-array name="langs">
+        <item>English</item>
+        <item>Croatian</item>
+        <item>German</item>
+    </string-array>
+</resources>
