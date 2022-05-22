@@ -1,56 +1,44 @@
 package hr.tvz.android.listacizmic.models;
 
+import static hr.tvz.android.listacizmic.models.TransactionConverter.localDateToString;
+import static hr.tvz.android.listacizmic.models.TransactionConverter.stringDateToLocal;
+
 import android.net.Uri;
-import android.os.Parcel;
-import android.os.Parcelable;
+
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+import androidx.room.TypeConverters;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
-public class Transaction implements Parcelable {
-    private final static String DATE_PATTERN = "dd.MM.yyyy.";
+import kotlin.random.RandomKt;
 
+@Entity(tableName = "transaction_table")
+@TypeConverters({TransactionConverter.class})
+public class Transaction {
+
+
+    @PrimaryKey(autoGenerate = true)
     private Integer id;
     private LocalDate date;
     private Double amount;
     private Uri img;
-    private Integer img_id;
 
-    public Transaction(Integer _id, String _date, Double _amount, Integer _img_id) {
-        this.id = _id;
+    //entity constructor
+    public Transaction(LocalDate date, Double amount, Uri img) {
+        this.date = date;
+        this.amount = amount;
+        this.img = img;
+    }
+
+    public Transaction(String _date, Double _amount) {
         this.date = stringDateToLocal(_date);
         this.amount = _amount;
-//        this.img = _img;
-        this.img_id = _img_id;
+        this.img = rngUri();
     }
 
-
-    protected Transaction(Parcel in) {
-        this.id = in.readInt();
-        this.date = this.stringDateToLocal(in.readString());
-        this.amount = in.readDouble();
-        this.img = Uri.parse(in.readString());
-        this.img_id = in.readInt();
-    }
-
-    public static final Creator<Transaction> CREATOR = new Creator<Transaction>() {
-        @Override
-        public Transaction createFromParcel(Parcel in) {
-            return new Transaction(in);
-        }
-
-        @Override
-        public Transaction[] newArray(int size) {
-            return new Transaction[size];
-        }
-    };
-
-    public static LocalDate stringDateToLocal(String _date) {
-        return LocalDate.parse(_date, DateTimeFormatter.ofPattern(DATE_PATTERN));
-    }
-
-    public static String localDateToString(LocalDate _date) {
-        return _date.format(DateTimeFormatter.ofPattern(DATE_PATTERN));
+    public String details() {
+        return "\nT\n  " + date + "   " + amount + "   " + "   " + img;
     }
 
     //region getset
@@ -86,28 +74,16 @@ public class Transaction implements Parcelable {
         this.img = img;
     }
 
-    public String getStrDate() {return localDateToString(this.date);}
-
-    public Integer getImg_id() {
-        return img_id;
-    }
-
-    public void setImg_id(Integer img_id) {
-        this.img_id = img_id;
+    public String getStrDate() {
+        return localDateToString(this.date);
     }
     //endregion
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeInt(this.id);
-        parcel.writeString(this.localDateToString(this.date));
-        parcel.writeDouble(this.amount);
-        parcel.writeString(this.img.toString());
-        parcel.writeInt(this.img_id);
+    public Uri rngUri() {
+        return Uri.parse(new String[]{
+                "android.resource://hr.tvz.android.ListaCizmic/drawable/pay1",
+                "android.resource://hr.tvz.android.ListaCizmic/drawable/pay2",
+                "android.resource://hr.tvz.android.ListaCizmic/drawable/pay3"
+        }[RandomKt.Random(System.currentTimeMillis()).nextInt(3)]);
     }
 }

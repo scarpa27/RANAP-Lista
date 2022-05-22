@@ -17,20 +17,21 @@ class DetailsActivity : AppCompatActivity() {
     private val TAG = "LABOS"
     private lateinit var binding: ActivityDetailsBinding
     private lateinit var trans: Transaction
+    private var trans_id = 0
     private var darkMode: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        Log.d(TAG, "onCreate: ")
         super.onCreate(savedInstanceState)
+
         binding = ActivityDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
 
         Log.d(TAG, "dark value:  "+applicationContext.resources.configuration.uiMode.toString())
         if (darkMode == 0) darkMode = applicationContext.resources.configuration.uiMode
 
 
-        trans = intent.getParcelableExtra("single_transaction")!!
+//        trans = intent.getParcelableExtra("single_transaction")!!
+        trans_id = intent.extras?.get("single_transaction") as Int
 
         setDetails()
     }
@@ -67,7 +68,7 @@ class DetailsActivity : AppCompatActivity() {
         binding.detailImage.setOnLongClickListener {
             kotlin.run {
                 val mIntent = Intent(this@DetailsActivity, ImageActivity::class.java)
-                mIntent.putExtra("uri_src", trans.img_id)
+//                mIntent.putExtra("uri_src", trans.img_id)
                 startActivity(mIntent)
             }
             true

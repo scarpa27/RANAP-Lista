@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "525437485812",
+    "project_id": "android-demo-list",
+    "storage_bucket": "android-demo-list.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:525437485812:android:b89dd88c686ed1d9e614a1",
+        "android_client_info": {
+          "package_name": "hr.tvz.android.ListaCizmic"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "525437485812-f0qb0c7hduvcjuplr22vsuri36dvh390.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQL_WRw4cD8Gp4Lu-xfvQeZl1xoab4Kwg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "525437485812-f0qb0c7hduvcjuplr22vsuri36dvh390.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

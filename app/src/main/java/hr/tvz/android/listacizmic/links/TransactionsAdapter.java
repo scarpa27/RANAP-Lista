@@ -15,10 +15,12 @@ import java.util.List;
 
 import hr.tvz.android.listacizmic.R;
 import hr.tvz.android.listacizmic.models.Transaction;
+import hr.tvz.android.listacizmic.models.TransactionConverter;
+import hr.tvz.android.listacizmic.utils.Util;
 
 public class TransactionsAdapter extends RecyclerView.Adapter<TransactionsAdapter.MyViewHolder> {
 
-    private final List<Transaction> transactions;
+    private List<Transaction> transactions;
     private TransactionClickHandler mListener;
 
     public interface TransactionClickHandler {
@@ -34,6 +36,10 @@ public class TransactionsAdapter extends RecyclerView.Adapter<TransactionsAdapte
         this.transactions = _l;
     }
 
+    public void setTransactions(List<Transaction> transactions) {
+        this.transactions = transactions;
+    }
+
     @NonNull
     @Override
     public TransactionsAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -46,7 +52,7 @@ public class TransactionsAdapter extends RecyclerView.Adapter<TransactionsAdapte
     public void onBindViewHolder(@NonNull TransactionsAdapter.MyViewHolder holder, int position) {
         Transaction t = transactions.get(position);
         holder.tvAmount.setText(t.getAmount().toString());
-        holder.tvDate.setText(Transaction.localDateToString(t.getDate()));
+        holder.tvDate.setText(TransactionConverter.localDateToString(t.getDate()));
         holder.tvImage.setImageURI(t.getImg());
 //        holder.item.setOnLongClickListener(listener);
     }
@@ -67,16 +73,13 @@ public class TransactionsAdapter extends RecyclerView.Adapter<TransactionsAdapte
             tvAmount = itemView.findViewById(R.id.tv_amount);
             tvDate = itemView.findViewById(R.id.tv_date);
             tvImage = itemView.findViewById(R.id.item_image);
-            itemView.setOnLongClickListener(new View.OnLongClickListener() {
-                @Override
-                public boolean onLongClick(View view) {
-                    if (handler != null) {
-                        int pos = getAdapterPosition();
-                        if (pos != RecyclerView.NO_POSITION)
-                            handler.onTransactionClick(pos);
-                    }
-                    return true;
+            itemView.setOnLongClickListener(view -> {
+                if (handler != null) {
+                    int pos = getAdapterPosition();
+                    if (pos != RecyclerView.NO_POSITION)
+                        handler.onTransactionClick(pos);
                 }
+                return true;
             });
         }
     }
